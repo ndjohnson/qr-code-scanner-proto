@@ -7,11 +7,17 @@
 
 import SwiftUI
 
+var activeCamera:String = ""
+var activePage:ActivePage = .home
+
 @main
 struct QR_code_scanner_protoApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+        }
+        WindowGroup(id: "ScanWindow") {
+            ScanViewFixed()
         }
     }
 }

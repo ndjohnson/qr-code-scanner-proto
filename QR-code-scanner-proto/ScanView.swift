@@ -7,8 +7,23 @@
 
 import SwiftUI
 import CodeScanner
+import AVFoundation
+
+struct ScanViewFixed: View {
+    var body: some View {
+        Text("Hello from ScanViewFixed")
+    }
+}
+
+struct ScanViewFixed_Previews: PreviewProvider {
+    static var previews : some View {
+        ScanViewFixed()
+    }
+}
 
 struct ScanView: View {
+    @Binding var page:ActivePage
+    var camera:String
     @State var isScanning = true
     @State var isShowingImage = false
     @State var scannedString:String?
@@ -20,8 +35,7 @@ struct ScanView: View {
     var body: some View {
         if isScanning {
             ZStack {
-                CodeScannerView(codeTypes: [.qr], scanMode: .continuous, scanInterval: 0.5, simulatedData: "bla bla") { response in
-                    //isScanning = false
+                CodeScannerView(codeTypes: [.qr], scanMode: .continuous, scanInterval: 0.5, simulatedData: "bla bla", videoCaptureDevice: AVCaptureDevice(uniqueID: camera)) { response in
                     switch response {
                     case .success(let result):
                         //rawImage = result.image
@@ -83,6 +97,6 @@ struct ScanView: View {
 
 struct ScanView_Previews: PreviewProvider {
     static var previews: some View {
-        ScanView()
+        ScanView(page: .constant(.scan), camera: "previewCamera")
     }
 }

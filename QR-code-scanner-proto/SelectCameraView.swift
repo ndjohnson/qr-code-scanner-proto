@@ -10,7 +10,7 @@ import AVKit
 
 struct SelectCameraView: View {
     @Binding var page:ActivePage
-    @Binding<String> var activeCamera:String
+    @Binding var activeCamera:String
     @State var cameraList:[String] = []
     
     var body: some View {

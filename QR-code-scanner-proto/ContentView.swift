@@ -28,7 +28,7 @@ struct ContentView: View {
                 Button ("Done") { exit(0) }
             }
         case .scan:
-            ScanView()
+            ScanView(page: $activePage, camera: activeCamera)
             
         case .selectCamera:
             SelectCameraView(page: $activePage, activeCamera: $activeCamera)
