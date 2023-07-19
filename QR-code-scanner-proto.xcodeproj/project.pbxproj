@@ -12,6 +12,8 @@
 		C34B72432A632C3F00368700 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C34B72422A632C3F00368700 /* Assets.xcassets */; };
 		C34B72462A632C3F00368700 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C34B72452A632C3F00368700 /* Preview Assets.xcassets */; };
 		C34B724E2A632FAB00368700 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = C34B724D2A632FAB00368700 /* CodeScanner */; };
+		C3A9474A2A683777009257F9 /* SelectCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A947492A683777009257F9 /* SelectCameraView.swift */; };
+		C3A9474C2A683833009257F9 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9474B2A683833009257F9 /* ScanView.swift */; };
 		C3F75C3A2A65F53500DB791D /* Boat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3F75C392A65F53500DB791D /* Boat.swift */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +24,9 @@
 		C34B72422A632C3F00368700 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C34B72452A632C3F00368700 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C36EDC892A63415500BBF7B7 /* QR-code-scanner-proto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "QR-code-scanner-proto.entitlements"; sourceTree = "<group>"; };
+		C3A947482A681011009257F9 /* CodeScanner */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CodeScanner; path = ../../Downloads/CodeScanner; sourceTree = "<group>"; };
+		C3A947492A683777009257F9 /* SelectCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCameraView.swift; sourceTree = "<group>"; };
+		C3A9474B2A683833009257F9 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		C3F75C392A65F53500DB791D /* Boat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -40,6 +45,7 @@
 		C34B72322A632C3C00368700 = {
 			isa = PBXGroup;
 			children = (
+				C3A947482A681011009257F9 /* CodeScanner */,
 				C34B723D2A632C3D00368700 /* QR-code-scanner-proto */,
 				C34B723C2A632C3D00368700 /* Products */,
 			);
@@ -59,6 +65,8 @@
 				C36EDC892A63415500BBF7B7 /* QR-code-scanner-proto.entitlements */,
 				C34B723E2A632C3D00368700 /* QR_code_scanner_protoApp.swift */,
 				C34B72402A632C3D00368700 /* ContentView.swift */,
+				C3A9474B2A683833009257F9 /* ScanView.swift */,
+				C3A947492A683777009257F9 /* SelectCameraView.swift */,
 				C3F75C392A65F53500DB791D /* Boat.swift */,
 				C34B72422A632C3F00368700 /* Assets.xcassets */,
 				C34B72442A632C3F00368700 /* Preview Content */,
@@ -151,6 +159,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3F75C3A2A65F53500DB791D /* Boat.swift in Sources */,
+				C3A9474A2A683777009257F9 /* SelectCameraView.swift in Sources */,
+				C3A9474C2A683833009257F9 /* ScanView.swift in Sources */,
 				C34B72412A632C3D00368700 /* ContentView.swift in Sources */,
 				C34B723F2A632C3D00368700 /* QR_code_scanner_protoApp.swift in Sources */,
 			);
@@ -304,7 +314,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "2,6";
 			};
 			name = Debug;
 		};
@@ -339,7 +349,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "2,6";
 			};
 			name = Release;
 		};

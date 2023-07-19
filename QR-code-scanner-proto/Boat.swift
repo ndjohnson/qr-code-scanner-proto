@@ -13,7 +13,7 @@ enum BoatState {
     case finished
 }
 
-class Boat : Identifiable {
+class Boat : Identifiable, ObservableObject {
     var id:String
     var track:[Double] = []
     var startTime:Date = Date()
