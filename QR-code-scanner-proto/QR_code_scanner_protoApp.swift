@@ -10,11 +10,13 @@ import SwiftUI
 var activeCamera:String = ""
 var activePage:ActivePage = .home
 
+var entry = Boats([Boat("139"), Boat("140"), Boat("141")])
+
 @main
 struct QR_code_scanner_protoApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(entry)
         }
         WindowGroup(id: "ScanWindow") {
             ScanViewFixed()

@@ -29,8 +29,8 @@ struct ScanView: View {
     @State var scannedString:String?
     @State var triggerString:String = ""
     @State var rawImage:UIImage?
-    @State var entry = Boats([Boat("139"), Boat("140"), Boat("141")])
     @State var detectedCount = 0
+    @EnvironmentObject var entry:Boats
 
     var body: some View {
         if isScanning {

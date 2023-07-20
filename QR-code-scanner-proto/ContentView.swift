@@ -12,6 +12,7 @@ enum ActivePage {
     case home
     case scan
     case selectCamera
+    case editEntry
 }
 
 
@@ -25,6 +26,7 @@ struct ContentView: View {
             VStack {
                 Button ("Select Camera") { activePage = .selectCamera }
                 Button ("Scan") { activePage = .scan }
+                Button ("Edit Entry") { activePage = .editEntry }
                 Button ("Done") { exit(0) }
             }
         case .scan:
@@ -32,6 +34,9 @@ struct ContentView: View {
             
         case .selectCamera:
             SelectCameraView(page: $activePage, activeCamera: $activeCamera)
+            
+        case .editEntry:
+            EntryEditView(page: $activePage)
         }
     }
 }
