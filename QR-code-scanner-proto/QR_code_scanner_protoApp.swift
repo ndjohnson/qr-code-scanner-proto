@@ -18,8 +18,5 @@ struct QR_code_scanner_protoApp: App {
         WindowGroup {
             ContentView().environmentObject(entry)
         }
-        WindowGroup(id: "ScanWindow") {
-            ScanViewFixed()
-        }
     }
 }

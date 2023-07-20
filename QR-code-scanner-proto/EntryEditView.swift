@@ -12,18 +12,30 @@ struct EntryEditView: View {
     @EnvironmentObject var entry:Boats
     @State var showEditSheet = false
     @State var boatBeingEdited:String = ""
+    @State var crew:String = ""
+    @State var club:String = ""
     
     var body: some View {
         List {
             ForEach (entry.boats) { boat in
                 Text("\(boat.id)").onTapGesture {
-                    showEditSheet = true
                     boatBeingEdited = boat.id
+                    crew = boat.crew ?? ""
+                    club = boat.club ?? ""
+                    showEditSheet = true
                 }
             }
         }
         .sheet(isPresented: $showEditSheet) {
-            TextField("Boat id", text: $boatBeingEdited)
+            HStack {
+                Spacer()
+                Text("Boat: \(boatBeingEdited) ")
+                TextField("Crew: ", text: $crew, prompt: Text("Crew: "))
+                    .onSubmit { entry.update(forId: boatBeingEdited, crew: crew, club: club)}
+                TextField("Club: ", text: $club, prompt: Text("Club: "))
+                    .onSubmit { entry.update(forId: boatBeingEdited, crew: crew, club: club)}
+                Spacer()
+            }
             Button("Done") { showEditSheet = false }
             //else
             //{

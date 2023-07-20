@@ -101,6 +101,19 @@ class Boats : ObservableObject {
         return nil
     }
     
+    func update(forId: String, crew: String?, club: String?) {
+        for b in boats {
+            if b.id == forId {
+                if let crew {
+                    b.crew = crew
+                }
+                if let club {
+                    b.club = club
+                }
+            }
+        }
+    }
+    
     func add(boat:Boat) {
         if !contains(boat: boat) {
             boats.append(boat)

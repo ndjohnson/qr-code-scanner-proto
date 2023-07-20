@@ -30,7 +30,6 @@
 		C3A9474B2A683833009257F9 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
 		C3F75C392A65F53500DB791D /* Boat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boat.swift; sourceTree = "<group>"; };
 		C3F75C3E2A687CC800DB791D /* CodeScanner */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = CodeScanner; path = ../../../Downloads/CodeScanner; sourceTree = "<group>"; };
-		C3F75C3F2A687CD100DB791D /* CodeScanner */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = CodeScanner; sourceTree = "<group>"; };
 		C3F75C402A687FAF00DB791D /* ScanResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanResultsView.swift; sourceTree = "<group>"; };
 		C3F75C422A693E8100DB791D /* EntryEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryEditView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -50,7 +49,6 @@
 		C34B72322A632C3C00368700 = {
 			isa = PBXGroup;
 			children = (
-				C3F75C3F2A687CD100DB791D /* CodeScanner */,
 				C34B723D2A632C3D00368700 /* QR-code-scanner-proto */,
 				C34B723C2A632C3D00368700 /* Products */,
 			);
