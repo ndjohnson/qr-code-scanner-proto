@@ -19,8 +19,8 @@ class Boat : Identifiable, ObservableObject {
     var startTime:Date = Date()
     var finishTime:Date = Date()
     var state:BoatState = .notStarted
-    var club:String?
-    var crew:String?
+    @Published var club:String = ""
+    @Published var crew:String = ""
     
     init(id:String, x:Double) {
         self.id = id

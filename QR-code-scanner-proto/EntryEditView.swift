@@ -11,17 +11,13 @@ struct EntryEditView: View {
     @Binding var page:ActivePage
     @EnvironmentObject var entry:Boats
     @State var showEditSheet = false
-    @State var boatBeingEdited:String = ""
-    @State var crew:String = ""
-    @State var club:String = ""
+    @State var boatBeingEdited:Boat = Boat("")
     
     var body: some View {
         List {
             ForEach (entry.boats) { boat in
                 Text("\(boat.id)").onTapGesture {
-                    boatBeingEdited = boat.id
-                    crew = boat.crew ?? ""
-                    club = boat.club ?? ""
+                    boatBeingEdited = boat
                     showEditSheet = true
                 }
             }
@@ -29,11 +25,11 @@ struct EntryEditView: View {
         .sheet(isPresented: $showEditSheet) {
             HStack {
                 Spacer()
-                Text("Boat: \(boatBeingEdited) ")
-                TextField("Crew: ", text: $crew, prompt: Text("Crew: "))
-                    .onSubmit { entry.update(forId: boatBeingEdited, crew: crew, club: club)}
-                TextField("Club: ", text: $club, prompt: Text("Club: "))
-                    .onSubmit { entry.update(forId: boatBeingEdited, crew: crew, club: club)}
+                Text("Boat: \(boatBeingEdited.id) ")
+                TextField("Crew: ", text: $boatBeingEdited.crew, prompt: Text("Crew: "))
+                    .onSubmit { entry.boat(forId: boatBeingEdited.id)?.crew = boatBeingEdited.crew }
+                TextField("Club: ", text: $boatBeingEdited.club, prompt: Text("Club: "))
+                    .onSubmit { entry.boat(forId: boatBeingEdited.id)?.club = boatBeingEdited.club }
                 Spacer()
             }
             Button("Done") { showEditSheet = false }
