@@ -101,7 +101,7 @@ class Boats : ObservableObject {
         return nil
     }
     
-    func update(forId: String, crew: String?, club: String?) {
+    func update(forId: String, crew: String? = nil, club: String? = nil) {
         for b in boats {
             if b.id == forId {
                 if let crew {

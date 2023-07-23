@@ -13,12 +13,14 @@ enum ActivePage {
     case scan
     case selectCamera
     case editEntry
+    case editBoat
 }
 
 
 struct ContentView: View {
     @State var activePage:ActivePage = .home
     @State var activeCamera:String = ""
+    @State var boatBeingEdited = Boat("")
     
     var body: some View {
         switch activePage {
@@ -36,7 +38,10 @@ struct ContentView: View {
             SelectCameraView(page: $activePage, activeCamera: $activeCamera)
             
         case .editEntry:
-            EntryEditView(page: $activePage)
+            EntryEditView(page: $activePage, boatBeingEdited: $boatBeingEdited)
+            
+        case .editBoat:
+            BoatEditView(page: $activePage, boatBeingEdited: $boatBeingEdited)
         }
     }
 }

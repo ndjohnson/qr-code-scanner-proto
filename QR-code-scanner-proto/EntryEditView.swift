@@ -9,41 +9,28 @@ import SwiftUI
 
 struct EntryEditView: View {
     @Binding var page:ActivePage
+    @Binding var boatBeingEdited:Boat
     @EnvironmentObject var entry:Boats
-    @State var showEditSheet = false
-    @State var boatBeingEdited:Boat = Boat("")
     
     var body: some View {
         List {
             ForEach (entry.boats) { boat in
                 Text("\(boat.id)").onTapGesture {
                     boatBeingEdited = boat
-                    showEditSheet = true
+                    page = .editBoat
                 }
             }
         }
-        .sheet(isPresented: $showEditSheet) {
-            HStack {
-                Spacer()
-                Text("Boat: \(boatBeingEdited.id) ")
-                TextField("Crew: ", text: $boatBeingEdited.crew, prompt: Text("Crew: "))
-                    .onSubmit { entry.boat(forId: boatBeingEdited.id)?.crew = boatBeingEdited.crew }
-                TextField("Club: ", text: $boatBeingEdited.club, prompt: Text("Club: "))
-                    .onSubmit { entry.boat(forId: boatBeingEdited.id)?.club = boatBeingEdited.club }
-                Spacer()
-            }
-            Button("Done") { showEditSheet = false }
-            //else
-            //{
-            //    showEditSheet = false
-            //}
-        }
         Button("done") { page = .home }
+    }
+    
+    func dismissSheet() {
+        
     }
 }
 
 struct EntryEditView_Previews: PreviewProvider {
     static var previews: some View {
-        EntryEditView(page: .constant(.editEntry))
+        EntryEditView(page: .constant(.editEntry), boatBeingEdited: .constant(Boat("")))
     }
 }
