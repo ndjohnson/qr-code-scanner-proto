@@ -21,6 +21,7 @@ struct ContentView: View {
     @State var activePage:ActivePage = .home
     @State var activeCamera:String = ""
     @State var boatBeingEdited = Boat("")
+    @State var isVibrate = false
     
     var body: some View {
         switch activePage {
@@ -32,7 +33,7 @@ struct ContentView: View {
                 Button ("Done") { exit(0) }
             }
         case .scan:
-            ScanView(page: $activePage, camera: activeCamera)
+            ScanView(page: $activePage, camera: activeCamera, isVibrate: isVibrate)
             
         case .selectCamera:
             SelectCameraView(page: $activePage, activeCamera: $activeCamera)
