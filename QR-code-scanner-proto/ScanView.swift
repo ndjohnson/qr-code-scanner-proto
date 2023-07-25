@@ -29,6 +29,7 @@ struct ScanView: View {
     @State var isShowingImage = false
     @State var scannedString:String?
     @State var triggerString:String = ""
+    @State var togglywoggly = "0"
     @EnvironmentObject var entry:Boats
     @State var snapShot:UIImage?
 
@@ -36,7 +37,7 @@ struct ScanView: View {
         if isScanning {
             HStack {
                 //if let snapShot { Image(uiImage: snapShot) }
-                CodeScannerView(codeTypes: [.qr], scanMode: .continuous, scanInterval: 2.0, shouldVibrateOnSuccess: isVibrate, videoCaptureDevice: AVCaptureDevice(uniqueID: camera), multiCompletion: multiComplete) { response in
+                CodeScanView(codeTypes: [.qr], scanMode: .continuous, scanInterval: 2.0, shouldVibrateOnSuccess: isVibrate, videoCaptureDevice: AVCaptureDevice(uniqueID: camera), multiCompletion: multiComplete) { response in
                     switch response {
                     case .success(let result):
                         let boatId = result.string
@@ -52,6 +53,7 @@ struct ScanView: View {
                 }
                 VStack (alignment: .leading){
                     Text(triggerString)
+                    Text(togglywoggly).hidden()
                     Button("Reset") { entry.reset() }
                     Button("Stop") { page = .home }
                     Text("Not Started")
@@ -84,14 +86,24 @@ struct ScanView: View {
         case .success(let result):
             let multiScan = result.results
             snapShot = result.image
+            togglywoggly = toggleString(togglywoggly)
             triggerString = "found \(multiScan.count) codes"
+            
             for scan in multiScan {
-                print ("found \(scan.qrCode), centre = \(scan.centre)")
-                _ = entry.detected(id: scan.qrCode, x: scan.centre.x)
+                print ("found \(scan.code), centre = \(scan.centre)")
+                _ = entry.detected(id: scan.code, x: scan.centre.x)
             }
             
         case .failure:
             print("what are you doing here?")
+        }
+    }
+    
+    func toggleString(_ t:String) -> String {
+        if t == "0" {
+            return "1"
+        } else {
+            return "0"
         }
     }
 }

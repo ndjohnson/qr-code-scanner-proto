@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import CodeScanner
+//import CodeScanView
 
 enum ActivePage {
     case home
