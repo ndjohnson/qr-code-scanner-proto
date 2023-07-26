@@ -80,8 +80,6 @@ public struct CodeScanView: UIViewControllerRepresentable {
     public let scanMode: ScanMode
     public let manualSelect: Bool
     public let scanInterval: Double
-    public let showViewfinder: Bool
-    public var simulatedData = ""
     public var shouldVibrateOnSuccess: Bool
     public var isTorchOn: Bool
     public var isGalleryPresented: Binding<Bool>
@@ -94,8 +92,6 @@ public struct CodeScanView: UIViewControllerRepresentable {
         scanMode: ScanMode = .once,
         manualSelect: Bool = false,
         scanInterval: Double = 2.0,
-        showViewfinder: Bool = false,
-        simulatedData: String = "",
         shouldVibrateOnSuccess: Bool = true,
         isTorchOn: Bool = false,
         isGalleryPresented: Binding<Bool> = .constant(false),
@@ -106,9 +102,7 @@ public struct CodeScanView: UIViewControllerRepresentable {
         self.codeTypes = codeTypes
         self.scanMode = scanMode
         self.manualSelect = manualSelect
-        self.showViewfinder = showViewfinder
         self.scanInterval = scanInterval
-        self.simulatedData = simulatedData
         self.shouldVibrateOnSuccess = shouldVibrateOnSuccess
         self.isTorchOn = isTorchOn
         self.isGalleryPresented = isGalleryPresented
@@ -118,7 +112,7 @@ public struct CodeScanView: UIViewControllerRepresentable {
     }
 
     public func makeUIViewController(context: Context) -> ScanViewUIController {
-        return ScanViewUIController(showViewfinder: showViewfinder, parentView: self)
+        return ScanViewUIController(parentView: self)
     }
 
     public func updateUIViewController(_ uiViewController: ScanViewUIController, context: Context) {

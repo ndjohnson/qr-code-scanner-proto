@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-var activeCamera:String = ""
-var activePage:ActivePage = .home
-
 var entry = Boats([Boat("139"), Boat("140"), Boat("141")])
 
 @main

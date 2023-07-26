@@ -25,59 +25,55 @@ struct ScanView: View {
     @Binding var page:ActivePage
     var camera:String
     var isVibrate:Bool
-    @State var isScanning = true
-    @State var isShowingImage = false
     @State var scannedString:String?
     @State var triggerString:String = ""
     @State var togglywoggly = "0"
     @EnvironmentObject var entry:Boats
     @State var snapShot:UIImage?
+    @State var totalWidth=0
 
     var body: some View {
-        if isScanning {
-            HStack {
-                //if let snapShot { Image(uiImage: snapShot) }
-                CodeScanView(codeTypes: [.qr], scanMode: .continuous, scanInterval: 2.0, shouldVibrateOnSuccess: isVibrate, videoCaptureDevice: AVCaptureDevice(uniqueID: camera), multiCompletion: multiComplete) { response in
-                    switch response {
-                    case .success(let result):
-                        let boatId = result.string
-                        let c = result.corners
-                        let x = (c[0].x + c[1].x + c[2].x + c[3].x) / 4.0
-                        print("detected: \(boatId)\n")
-                        _ = entry.detected(id: boatId, x: x)
-                        
-                    case .failure(let error):
-                        scannedString = error.localizedDescription
-                    }
+        HStack {
+            //Image(uiImage: snapShot ?? )
+            CodeScanView(codeTypes: [.qr], scanMode: .continuous, scanInterval: 2.0, shouldVibrateOnSuccess: isVibrate, videoCaptureDevice: AVCaptureDevice(uniqueID: camera), multiCompletion: multiComplete) { response in
+                switch response {
+                case .success(let result):
+                    let boatId = result.string
+                    let c = result.corners
+                    let x = (c[0].x + c[1].x + c[2].x + c[3].x) / 4.0
+                    print("detected: \(boatId)\n")
+                    _ = entry.detected(id: boatId, x: x)
                     
+                case .failure(let error):
+                    scannedString = error.localizedDescription
                 }
-                VStack (alignment: .leading){
-                    Text(triggerString)
-                    Text(togglywoggly).hidden()
-                    Button("Reset") { entry.reset() }
-                    Button("Stop") { page = .home }
-                    Text("Not Started")
-                    ForEach(entry.boats) { boat in
-                        if boat.state == .notStarted {
-                            Text("\(boat.id): \(boat.track.count)")
-                        }
-                    }
-                    Text("Started")
-                    ForEach(entry.boats) { boat in
-                        if boat.state == .started {
-                            Text("\(boat.id): \(boat.track.count)")
-                        }
-                    }
-                    Text("Finished")
-                    ForEach(entry.boats) { boat in
-                        if boat.state == .finished {
-                            Text("\(boat.id): \(boat.track.count)")
-                        }
-                    }
-                }.background(.gray.opacity(0.5))
+                
             }
-        } else {
-            Text ("Preview")
+            
+            VStack (alignment: .leading){
+                Text(triggerString)
+                Text(togglywoggly).hidden()
+                Button("Reset") { entry.reset() }
+                Button("Stop") { page = .home }
+                Text("Not Started")
+                ForEach(entry.boats) { boat in
+                    if boat.state == .notStarted {
+                        Text("\(boat.id): \(boat.track.count)")
+                    }
+                }
+                Text("Started")
+                ForEach(entry.boats) { boat in
+                    if boat.state == .started {
+                        Text("\(boat.id): \(boat.track.count)")
+                    }
+                }
+                Text("Finished")
+                ForEach(entry.boats) { boat in
+                    if boat.state == .finished {
+                        Text("\(boat.id): \(boat.track.count)")
+                    }
+                }
+            }.background(.gray.opacity(0.5))
         }
     }
     
